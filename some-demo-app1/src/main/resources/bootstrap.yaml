@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: some-demo-app1
+  profiles:
+    active: local
+  cloud:
+    consul:
+      host: localhost
+      port: 18500
+      config:
+        format: YAML
+
+---
+spring:
+  profiles: docker
+  cloud:
+    consul:
+      host: dev-consul
+      port: 8500

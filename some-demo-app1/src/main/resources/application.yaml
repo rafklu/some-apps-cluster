@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: some-demo-app1
+  profiles:
+    active: local
+
+server:
+  port: 8080
+
+info:
+  app:
+    name: ${consul.app.name}
