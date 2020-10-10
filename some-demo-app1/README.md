@@ -1,14 +1,4 @@
-# Some Demo App1
-
-## Build image manualy
-First build application using maven:
-```mvn clean package```
-
-Second build docker image:
-```docker build . --tag some-demo-app1:0.0.1-SNAPSHOT```
-
-## Test
-Open https://localhost:8080/actuator/info to see if application is working properly.
+# Some Demo App
 
 ## Configuration
 
@@ -28,6 +18,24 @@ spring:
       config:
         format: YAML
 ```
+
+## Build docker image manualy
+First build application using maven:
+```mvn clean package```
+
+Second build docker image:
+```docker build . --tag some-demo-app1:0.0.1-SNAPSHOT```
+
+## Run
+Run image as daemon:
+`docker run -d --name=some-demo-app1 -p 18080:8080 some-demo-app1:0.0.1-SNAPSHOT`
+
+Run image interactively:
+`docker run -it --rm --name=some-demo-app1 -p 18080:8080 some-demo-app1:0.0.1-SNAPSHOT`
+
+## Test
+Open https://localhost:8080/actuator/info to check if application is working properly.
+Should disply some JSON containg `app.name`.
 
 ## Useful Links
 * https://cloud.spring.io/spring-cloud-consul/multi/multi_spring-cloud-consul-config.html
