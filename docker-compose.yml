@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  dev-consul:
+    image: consul:latest
+    ports:
+      - "18500:8500"
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+
+  some-demo-app1:
+    image: localhost:5000/some-demo-app1:0.0.2-SNAPSHOT
+    ports:
+      - "18080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - dev-consul

@@ -17,3 +17,13 @@ spring:
     consul:
       host: dev-consul
       port: 8500
+
+---
+spring:
+  profiles: minikube
+  cloud:
+    consul:
+      host: consul
+      port: 8500
+      config:
+        fail-fast: false

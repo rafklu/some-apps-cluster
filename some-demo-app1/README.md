@@ -19,19 +19,31 @@ spring:
         format: YAML
 ```
 
-## Build docker image manualy
-First build application using maven:
-```mvn clean package```
+## Build docker image with app
 
-Second build docker image:
-```docker build . --tag some-demo-app1:0.0.1-SNAPSHOT```
+### Manually
+Build artifact:
+`mvn clean package`
+
+Build image:
+`docker build . --tag some-demo-app1:0.0.1-SNAPSHOT`
+
+Tag image
+`docker tag some-demo-app1:0.0.1-SNAPSHOT localhost:5000/some-demo-app1`
+
+Push image to local repository:
+`docker push localhost:5000/some-demo-app1`
+
+### Using `dockerfile-maven-plugin`
+Run maven command:
+`mvn clean deploy -Dmaven.deploy.skip`
 
 ## Run
 Run image as daemon:
-`docker run -d --name=some-demo-app1 -p 18080:8080 some-demo-app1:0.0.1-SNAPSHOT`
+`docker run -d --name=some-demo-app1 -p 18080:8080 localhost:5000/some-demo-app1`
 
 Run image interactively:
-`docker run -it --rm --name=some-demo-app1 -p 18080:8080 some-demo-app1:0.0.1-SNAPSHOT`
+`docker run -it --rm --name=some-demo-app1 -p 18080:8080 localhost:5000/some-demo-app1`
 
 ## Test
 Open https://localhost:8080/actuator/info to check if application is working properly.
